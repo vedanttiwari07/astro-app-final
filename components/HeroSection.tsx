@@ -206,7 +206,7 @@ const HeroSection = () => {
         <p className="font-poppins text-lg sm:text-xl text-sandalwood-700 max-w-2xl leading-relaxed mb-10">
           Discover your destiny through the sacred science of{' '}
           <span className="text-saffron-700 font-medium">Vedic Jyotish Shastra</span>.
-          With decades of experience, guiding souls toward clarity, purpose, and spiritual alignment!!!
+          With decades of experience, guiding souls toward clarity, purpose, and spiritual alignment!!
         </p>
 
         <div className="flex flex-wrap justify-center gap-6 text-sm font-poppins text-sandalwood-600 mb-12">
