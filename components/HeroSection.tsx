@@ -46,7 +46,7 @@ const HeroSection = () => {
   ];
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-gradient-to-b from-[#FDF8F0] via-[#FAF3E8] to-[#F5EDD8]">
+    <div className="min-h-screen relative overflow-hidden bg-linear-to-b from-[#FDF8F0] via-[#FAF3E8] to-[#F5EDD8]">
 
       <style>{`
         @keyframes spin-cw  { from { transform: rotate(0deg);   } to { transform: rotate(360deg);  } }
@@ -198,9 +198,9 @@ const HeroSection = () => {
         </h1>
 
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-16 h-px bg-gradient-to-r from-transparent to-saffron-400" />
+          <div className="w-16 h-px bg-linear-to-r from-transparent to-saffron-400" />
           <Star className="w-4 h-4 text-saffron-500 fill-saffron-400" />
-          <div className="w-16 h-px bg-gradient-to-l from-transparent to-saffron-400" />
+          <div className="w-16 h-px bg-linear-to-l from-transparent to-saffron-400" />
         </div>
 
         <p className="font-poppins text-lg sm:text-xl text-sandalwood-700 max-w-2xl leading-relaxed mb-10">
@@ -221,7 +221,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <button
             onClick={handleBookAppointment}
-            className="group relative px-8 py-4 bg-gradient-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white font-poppins font-medium rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-saffron-300/40 overflow-hidden"
+            className="group relative px-8 py-4 bg-linear-to-r from-saffron-500 to-saffron-600 hover:from-saffron-600 hover:to-saffron-700 text-white font-poppins font-medium rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl hover:shadow-saffron-300/40 overflow-hidden"
           >
             <span className="relative z-10 flex items-center gap-2">
               <Sparkles className="w-4 h-4" />
@@ -259,7 +259,7 @@ const HeroSection = () => {
         <ChevronDown className="w-4 h-4" />
       </button>
 
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#F5EDD8] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-linear-to-t from-[#F5EDD8] to-transparent pointer-events-none" />
     </div>
   );
 };
