@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { razorpay } from "@/lib/razorpay";
+import { getRazorpayInstance } from "@/lib/razorpay"; // ✅ changed
 import { prisma } from "@/lib/prisma";
 import {
   BookingStatus,
@@ -66,8 +66,11 @@ export async function POST(req: Request) {
 
   const amount = calculateBookingAmount(service.price, bookingOptions);
 
+  // ✅ Initialize Razorpay at runtime (NOT at import)
+  const razorpay = getRazorpayInstance();
+
   const order = await razorpay.orders.create({
-    amount: amount * 100, // paisa
+    amount: amount * 100,
     currency: "INR",
     receipt: bookingId,
     notes: {
