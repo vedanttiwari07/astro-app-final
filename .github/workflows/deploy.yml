@@ -27,7 +27,7 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # 4. Build and push image
+    # 4. Build and push image (WITH DATABASE_URL)
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
       with:
@@ -35,8 +35,10 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/my-next-app:latest
         platforms: linux/amd64
+        build-args: |
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
 
-    # 5. Deploy to EC2
+    # 5. Deploy to EC2 (WITH ALL ENV VARIABLES)
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v1.0.3
       with:
@@ -47,4 +49,12 @@ jobs:
           docker stop my-app || true
           docker rm my-app || true
           docker pull ${{ secrets.DOCKER_USERNAME }}/my-next-app:latest
-          docker run -d --name my-app -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/my-next-app:latest
+          docker run -d --name my-app -p 3000:3000 \
+            -e DATABASE_URL='${{ secrets.DATABASE_URL }}' \
+            -e NEXT_PUBLIC_SUPABASE_URL='${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}' \
+            -e NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY='${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}' \
+            -e NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY='${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}' \
+            -e CLERK_SECRET_KEY='${{ secrets.CLERK_SECRET_KEY }}' \
+            -e RAZORPAY_KEY_ID='${{ secrets.RAZORPAY_KEY_ID }}' \
+            -e RAZORPAY_KEY_SECRET='${{ secrets.RAZORPAY_KEY_SECRET }}' \
+            ${{ secrets.DOCKER_USERNAME }}/my-next-app:latest

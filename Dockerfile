@@ -8,7 +8,9 @@ RUN npm install
 
 COPY . .
 
-# 🔥 IMPORTANT: generate prisma for linux
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
+
 RUN npx prisma generate
 
 RUN npm run build
